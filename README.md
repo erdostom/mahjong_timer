@@ -1,6 +1,6 @@
 # Mahjong Timer
 
-![Mahjong Timer](/clock.png)
+![Mahjong Timer](/public/android-chrome-512x51x.png)
 
 A beautiful, full-screen timer designed for Mahjong games and other events. Features a large, legible display optimized for projectors and large screens.
 
@@ -30,7 +30,7 @@ A beautiful, full-screen timer designed for Mahjong games and other events. Feat
 
 ## Deployment
 
-This project is automatically deployed to [timer.mahjong.hu](https://timer.mahjong.hu) via GitHub Actions.
+This project is automatically deployed to [timer.tamaserdos.com](https://timer.tamaserdos.com) via GitHub Actions.
 
 ## Development
 
