@@ -85,13 +85,15 @@ body {
 
 @media (min-width: 1400px) {
   .timer-display {
-    font-size: min(calc(var(--timer-font-size, 24vw) * 5.8), 336px);
+    /* Cap at 400px on very large screens, but respect the vw ratio */
+    font-size: min(var(--timer-font-size, 24vw), 400px);
   }
 }
 
 @media (max-width: 768px) {
   .timer-display {
-    font-size: max(var(--timer-font-size, 24vw), 20vw);
+    /* Ensure minimum readability on small screens */
+    font-size: max(var(--timer-font-size, 24vw), 15vw);
   }
 }
 
