@@ -132,21 +132,42 @@ function playDingSound() {
     const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext;
     const ctx = new AudioContextClass();
 
-    const oscillator = ctx.createOscillator();
+    const now = ctx.currentTime;
+
+    // Create two oscillators for a nice bell-like chord
+    const osc1 = ctx.createOscillator();
+    const osc2 = ctx.createOscillator();
     const gainNode = ctx.createGain();
 
-    oscillator.connect(gainNode);
+    osc1.connect(gainNode);
+    osc2.connect(gainNode);
     gainNode.connect(ctx.destination);
 
-    oscillator.type = 'sine';
-    oscillator.frequency.setValueAtTime(880, ctx.currentTime);
-    oscillator.frequency.exponentialRampToValueAtTime(440, ctx.currentTime + 1.5);
+    // Triangle wave for a brighter, bell-like tone
+    osc1.type = 'triangle';
+    osc2.type = 'sine';
 
-    gainNode.gain.setValueAtTime(0.3, ctx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.5);
+    // Nice major third interval (E5 + G#5) - upbeat and cheerful
+    const baseFreq = 659.25; // E5
+    const harmonyFreq = 830.61; // G#5
 
-    oscillator.start(ctx.currentTime);
-    oscillator.stop(ctx.currentTime + 1.5);
+    osc1.frequency.setValueAtTime(baseFreq, now);
+    osc2.frequency.setValueAtTime(harmonyFreq, now);
+
+    // Slight pitch envelope for "boing" effect
+    osc1.frequency.exponentialRampToValueAtTime(baseFreq * 0.99, now + 0.1);
+    osc2.frequency.exponentialRampToValueAtTime(harmonyFreq * 0.99, now + 0.1);
+
+    // Bell-like envelope: quick attack, medium decay
+    gainNode.gain.setValueAtTime(0, now);
+    gainNode.gain.linearRampToValueAtTime(0.25, now + 0.01); // Quick attack
+    gainNode.gain.exponentialRampToValueAtTime(0.08, now + 0.3); // Decay
+    gainNode.gain.exponentialRampToValueAtTime(0.001, now + 1.2); // Release
+
+    osc1.start(now);
+    osc2.start(now);
+    osc1.stop(now + 1.2);
+    osc2.stop(now + 1.2);
   } catch {
     // Sound not supported, ignore
   }
