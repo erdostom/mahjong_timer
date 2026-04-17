@@ -74,7 +74,8 @@ body {
 }
 
 .timer-display {
-  font-size: 20vw;
+  font-size: var(--timer-font-size, 24vw);
+  font-family: var(--timer-font-family, system-ui, -apple-system, sans-serif);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1;
@@ -84,13 +85,13 @@ body {
 
 @media (min-width: 1400px) {
   .timer-display {
-    font-size: 280px;
+    font-size: min(calc(var(--timer-font-size, 24vw) * 5.8), 336px);
   }
 }
 
 @media (max-width: 768px) {
   .timer-display {
-    font-size: 25vw;
+    font-size: max(var(--timer-font-size, 24vw), 20vw);
   }
 }
 
@@ -197,6 +198,7 @@ body {
   cursor: pointer;
 }
 
+.settings-panel input[type="text"],
 .settings-panel input[type="number"],
 .settings-panel select {
   display: block;
@@ -207,6 +209,21 @@ body {
   border: 1px solid var(--input-border);
   border-radius: 6px;
   background-color: var(--input-bg);
+  color: var(--text);
+  font-family: ui-monospace, 'Courier New', monospace;
+}
+
+.settings-panel input[type="range"] {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.settings-panel .range-value {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-weight: 500;
   color: var(--text);
 }
 
