@@ -83,19 +83,7 @@ body {
   user-select: none;
 }
 
-@media (min-width: 1400px) {
-  .timer-display {
-    /* Cap at 400px on very large screens, but respect the vw ratio */
-    font-size: min(var(--timer-font-size, 24vw), 400px);
-  }
-}
-
-@media (max-width: 768px) {
-  .timer-display {
-    /* Ensure minimum readability on small screens */
-    font-size: max(var(--timer-font-size, 24vw), 15vw);
-  }
-}
+/* No restrictive media queries - slider controls size directly */
 
 .controls {
   display: flex;
