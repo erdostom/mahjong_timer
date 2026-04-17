@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# Mahjong Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Mahjong Timer](/clock.png)
 
-Currently, two official plugins are available:
+A beautiful, full-screen timer designed for Mahjong games and other events. Features a large, legible display optimized for projectors and large screens.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- **Large Timer Display** - MM:SS format with customizable font size (10-40vw)
+- **Font Customization** - Choose from System, Serif, or Monospace fonts
+- **Theme Support** - Light and dark themes
+- **Audio Alerts** - Pleasant bell-like ding at warning time and when timer expires
+- **Persistent State** - Timer continues even if you accidentally refresh the page
+- **Timeout Mode** - Red background and counts up (+MM:SS) when time runs out
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Settings
 
-## Expanding the ESLint configuration
+- **Total Time** - Set the countdown duration (MM:SS format)
+- **Warning Time** - Get an audio alert at a specific time remaining
+- **Play Sound at 0** - Toggle sound when timer reaches zero
+- **Font Size** - Adjust the timer display size
+- **Font Family** - System, Serif, or Monospace
+- **Theme** - Light or dark mode
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Usage
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **▶ / ⏸** - Start or pause the timer
+- **↺** - Reset timer to the configured duration
+- **⚙** - Open settings panel
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Deployment
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This project is automatically deployed to [timer.mahjong.hu](https://timer.mahjong.hu) via GitHub Actions.
+
+## Development
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## License
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+MIT
